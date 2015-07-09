@@ -1,6 +1,3 @@
-require 'bundler'
-Bundler.require
-
-require './modering'
+require 'modering'
 run Sinatra::Application
 
