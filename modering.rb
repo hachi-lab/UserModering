@@ -1,5 +1,6 @@
 #-*- encoding:SJIS -*-
 
+require 'rubygems'
 require 'sinatra'
 require './datalist.rb'
 
