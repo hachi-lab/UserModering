@@ -70,7 +70,9 @@ def get_recommendations(prefs, person, similarity=:sim_pearson)
 end
 
 get '/' do
-  @usr = top_matches(artist, 'e')
-  @art = get_recommendations(artist, 'e')
+
+  @title = 'Hello World!'
+  @subtitle = 'Welcome to the world of sinatra and ruby.'
+  
   erb :index
 end
