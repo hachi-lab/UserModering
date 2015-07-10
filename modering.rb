@@ -70,8 +70,8 @@ end
 
 get '/' do
 
-  @title = 'Hello World!'
-  @subtitle = 'Welcome to the world of sinatra and ruby.'
+  @usr = top_matches(artist, e)
+  @ast = get_recommendations(artist, e)
   
   erb :index
 end
