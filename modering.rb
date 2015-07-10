@@ -68,10 +68,13 @@ def get_recommendations(prefs, person, similarity=:sim_pearson)
 
 end
 
+m = top_matches(artist, 'e').join(',')
+n = get_reccomendation(artist, 'e').join(',')
+
 get '/' do
 
-  @usr = top_matches(artist, 'e').join(",")
-  @ast = get_recommendations(artist, 'e').join(",")
+  @usr = m
+  @ast = n
   
   erb :index
 end
