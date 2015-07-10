@@ -1,6 +1,48 @@
 require 'rubygems'
-require 'sinatra'
-require './datalist.rb'
+#require 'sinatra'
+#require './datalist.rb'
+
+def rock
+
+    {
+
+      'a'=> {"the cabs" => 8, "People in the box" => 7, "androp" => 4, "宇宙コンビニ" => 9, "凛として時雨" => 3, "the HIATUS" => 6},
+      
+      'b' => {"androp" => 10, "凛として時雨" => 4},
+      
+      'c' => {"the cabs" => 4, "People in the box" => 3, "androp" => 8, "凛として時雨" => 2, "the HIATUS" => 9},
+      
+      'd' => {"the cabs" => 10, "People in the box" => 8, "androp" => 9, "宇宙コンビニ" => 10, "凛として時雨" => 9, "the HIATUS" => 5},
+      
+      'e' => {"People in the box" => 4, "androp" => 8, "宇宙コンビニ" => 5},
+      
+      'usr'=> {"the cabs" => @data1, "People in the box" => @data2, "androp" => @data3, "宇宙コンビニ" => @data4, "凛として時雨" => @data5, "the HIATUS" => @data6},
+    
+    }
+
+end
+
+def metal
+
+      {
+      
+      'a'=> {"Destrage" => 8, "Arch Enemy" => 7, "Dragonforce" => 4, "Periphery" => 9, "SEX MACHINEGUNS" => 3, "METALICA" => 6},
+      
+      'b' => {"Dragonforce" => 10, "METALICA" => 4},
+      
+      'c' => {"Destrage" => 4, "Arch Enemy" => 3, "Dragonforce" => 8, "SEX MACHINEGUNS" => 2, "METALICA" => 9},
+      
+      'd' => {"Destrage" => 10, "Arch Enemy" => 4, "Dragonforce" => 9, "Periphery" => 10, "SEX MACHINEGUNS" => 6, "METALICA" => 2},
+      
+      'e' => {"Destrage" => 7, "Periphery" => 8},
+      
+      'usr'=> {"Destrage" => @data1, "Arch Enemy" => @data2, "Dragonforce" => @data3, "Periphery" => @data4, "SEX MACHINEGUNS" => @data5, "METALICA" => @data6},
+
+      }
+end
+
+
+
 
 def shared_items_a(prefs, person1, person2)
   prefs[person1].keys & prefs[person2].keys
@@ -34,7 +76,7 @@ def sim_pearson(prefs, person1, person2)
 end
 
 
-def top_matches(prefs, person, n=5, similarity=:sim_pearson)
+def top_matches(prefs, person, n=6, similarity=:sim_pearson)
   scores = Array.new
   prefs.each do |key,value|
     if key != person
@@ -68,13 +110,54 @@ def get_recommendations(prefs, person, similarity=:sim_pearson)
 
 end
 
-m = top_matches(artist, 'e').join(',')
-n = get_recommendations(artist, 'e').join(',')
+puts 'どんなジャンルのアーティストをお探しですか？'
+genre = gets.chomp
 
-get '/' do
+puts
 
-  @usr = m
-  @ast = n
-  
-  erb :index
+puts 'アーティストの評価を入力してください（知らないアーティストは評価しないでください'
+
+if genre == 'rock' then
+puts 'the cabs'
+@data1 = gets.to_i
+puts 'People in the box'
+@data2 = gets.to_i
+puts 'androp'
+@data3 = gets.to_i
+puts '宇宙コンビニ'
+@data4 = gets.to_i
+puts '凛として時雨'
+@data5 = gets.to_i
+puts 'the HIATUS'
+@data6 = gets.to_i
+
+elsif genre == 'metal' then
+puts 'Destrage'
+@data1 = gets.to_i
+puts 'Arch Enemy'
+@data2 = gets.to_i
+puts 'Dragonforce'
+@data3 = gets.to_i
+puts 'Periphery'
+@data4 = gets.to_i
+puts 'SEX MACHINEGUNS'
+@data5 = gets.to_i
+puts 'METALICA'
+@data6 = gets.to_i
+
+else
+  exit
 end
+
+
+puts
+puts
+puts '【あなたと好みが似ているユーザー』'
+puts
+puts top_matches(rock, 'usr') if genre == 'rock'
+puts top_matches(metal, 'usr') if genre == 'metal'
+puts
+puts '【あなたにオススメのアーティスト】'
+puts
+puts get_recommendations(rock, 'usr') if genre == 'rock'
+puts get_recommendations(metal, 'usr') if genre == 'metal'
