@@ -70,6 +70,9 @@ end
 
 get '/' do
 
+@usr = Array.new
+@ast = Array.new
+
   @usr = top_matches(artist, 'e')
   @ast = get_recommendations(artist, 'e')
   
