@@ -70,8 +70,8 @@ end
 
 get '/' do
 
-  @usr = top_matches(artist, e)
-  @ast = get_recommendations(artist, e)
+  @usr = top_matches(artist, 'e')
+  @ast = get_recommendations(artist, 'e')
   
   erb :index
 end
