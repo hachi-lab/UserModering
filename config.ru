@@ -1,3 +1,3 @@
-require 'modering'
+require './modering'
 run Sinatra::Application
 
