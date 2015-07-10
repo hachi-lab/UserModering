@@ -69,7 +69,7 @@ def get_recommendations(prefs, person, similarity=:sim_pearson)
 end
 
 m = top_matches(artist, 'e').join(',')
-n = get_reccomendation(artist, 'e').join(',')
+n = get_recommendations(artist, 'e').join(',')
 
 get '/' do
 
