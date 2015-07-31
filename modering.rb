@@ -2,6 +2,9 @@ require 'rubygems'
 #require 'sinatra'
 #require './datalist.rb'
 
+
+//データベース
+
 def rock
 
     {
@@ -42,7 +45,7 @@ def metal
 end
 
 
-
+//システム
 
 def shared_items_a(prefs, person1, person2)
   prefs[person1].keys & prefs[person2].keys
